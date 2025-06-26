@@ -21,3 +21,9 @@ EXPOSE 8501
 
 # Default command
 CMD ["streamlit", "run", "job_tracker_ui.py", "--server.port=8501", "--server.address=0.0.0.0"]
+
+# Install bash and add color support
+RUN apt-get update && apt-get install -y git && \
+    git clone https://github.com/magicmonty/bash-git-prompt.git /root/.bash-git-prompt --depth=1 && \
+    echo "GIT_PROMPT_ONLY_IN_REPO=1" >> /root/.bashrc && \
+    echo "source ~/.bash-git-prompt/gitprompt.sh" >> /root/.bashrc
